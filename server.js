@@ -78,7 +78,7 @@ app.get('/flights/:id', async (req, res) => {
   try {
     // We are using the id given to us in the URL params to query our database.
     const foundFlight = await Flight.findById(req.params.id);
-    res.render('flights/Show', {
+    res.render('Show', {
       //second param must be an object
       flight: foundFlight,
       //there will be a variable available inside the jsx file called flight, its value is foundFlight

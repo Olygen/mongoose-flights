@@ -11,16 +11,15 @@ const header = {
   backgroundColor: '#800080',
 };
 
-const React = require("react")
-
 class Show extends React.Component {
   render() {
-    const fruit = this.props.fruit
+    const flight = this.props.flight
     return (
       <div style={div}>
         <h1> Show Page </h1>
-          The {fruit.name} is {fruit.color} <br />
-          {fruit.readyToEat? 'Its is ready to eat' : 'It is not ready to eat... Cant touch this' }
+        {flight.airline} 
+                      Flight {flight.flightNo} - 
+                      Departs: {new Date(flight.departs).toLocaleString()}
           <create>
             <a href="/flights">
             <h2 style={{textAlign: "center"}}>Home</h2>
