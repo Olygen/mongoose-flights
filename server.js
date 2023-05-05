@@ -49,11 +49,6 @@ app.get('/flights', async (req, res) => {
   }
 });
 
-app.get('/flights', (req, res) => {
-  console.log('Index Controller Func. running...');
-  res.render("Index", { pokemon: Pokemon });
-});
-
 // New // renders a form to create a new fruit
 app.get('/flights/new', (req, res) => {
   res.render('New');
@@ -77,7 +72,8 @@ app.post('/flights', async (req, res) => {
 app.get('/flights/:id', async (req, res) => {
   try {
     // We are using the id given to us in the URL params to query our database.
-    const foundFlight = await Flight.findById(req.params.id);
+    // const foundFlight = await Flight.findById(req.params.id);
+    const foundFlight = await Flight.findById(req.params.id).populate('destinations');
     res.render('Show', {
       //second param must be an object
       flight: foundFlight,

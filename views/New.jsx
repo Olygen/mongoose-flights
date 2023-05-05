@@ -50,6 +50,14 @@ const div = {
             <input style={input} type="text" name="flightNo" />
             Departure:
             <input style={input} type="datetime-local" name="departs" />
+            Airport:
+            <select style={input} name="airport">
+              <option value="AUS">Austin</option>
+              <option value="DAL">Dallas</option>
+              <option value="LAX">Los Angeles</option>
+              <option value="SAN">San Diego</option>
+              <option value="SEA">Seattle</option>
+            </select>
             <input style={button} type="submit" value="Create Flight" />
           </form>
         </div>

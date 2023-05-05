@@ -26,19 +26,44 @@ class Index extends React.Component {
         <header style={header}>
             <h1>All Flights</h1> 
         </header>
-        <ul  style={flightTable}>
+        {/* <ul  style={flightTable}>
             {flight.map((flight, i) => {
                 return (
                     <li key={i}>
-                        <a href={`/flights/${flight._id}`}>
                         {flight.airline} 
                         Flight {flight.flightNo} - 
                         Departs: {new Date(flight.departs).toLocaleString()}
-                        </a>{" "}
+                        <span>
+                          <a href={`/flights/${flight._id}`}>Details</a>
+                        </span>
                     </li>                     
                 );
             })}
-        </ul>
+        </ul> */}
+        <table style={flightTable}>
+          <thead>
+            <tr>
+              <th>Airline</th>
+              <th>Flight No.</th>
+              <th>Departs</th>
+              <th>Details</th>
+            </tr>
+          </thead>
+          <tbody>
+            {flight.map((flight, i) => {
+              return (
+                <tr key={i}>
+                  <td>{flight.airline}</td>
+                  <td>{flight.flightNo}</td>
+                  <td>{new Date(flight.departs).toLocaleString()}</td>
+                  <td>
+                    <a href={`/flights/${flight._id}`}>Details</a>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
             <a href="/flights/new">
             <h2 style={{textAlign: "center"}}>Want to add new flight?</h2>
             </a>
