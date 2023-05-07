@@ -1,9 +1,10 @@
 require('dotenv').config();
-const express = require('express');
+const express = require('express'); // copy to controller
 const app = express();
 const PORT = process.env.PORT || 3000;
-const Flight = require('./models/flight');
 const db = require('./config/database');
+const flightsController = require('./controllers/flightsController');
+
 
 // This line of code will run the function below once 
 // the connection to MongoDB has been established.
@@ -26,62 +27,17 @@ app.use((req, res, next) => {
   next();
 });
 
-// I.N.D.U.C.E.S. for FLIGHTS
-//=========================
+// Routes
+app.use('/flights', flightsController);
 
-// Index
-app.get('/', (req, res) => {
-  console.log('Index Controller Func. running...');
+//Catch all route. If the uses try to reach a route that doesn't match the ones above it will catch them and redirect to the Index page
+app.get('/*', (req, res) => {
   res.send(`
-    <h1>
-    <a href="/flights">Welcome to Flights App!</a>
-    </h1>
+    <div>
+      404 this page doesn't exist! <br />
+      <a href="/flights">Flights</a> 
+    </div
   `);
-});
-
-app.get('/flights', async (req, res) => {
-  console.log('Index Controller Func. running...');
-  try {
-    const foundFlight = await Flight.find({});
-    res.status(200).render('Index', { flight: foundFlight });
-  } catch (err) {
-    res.status(400).send(err);
-  }
-});
-
-// New // renders a form to create a new fruit
-app.get('/flights/new', (req, res) => {
-  res.render('New');
-});
-
-// Create // recieves info from new route to then create a new flight w/ it
-app.post('/flights', async (req, res) => {
-  try {
-
-    const newFlight = await Flight.create(req.body);
-    console.log(newFlight);
-    //console.log(flights);
-    // redirect is making a GET request to the path flights
-    res.redirect('/flights');
-  } catch (err) {
-    res.status(400).send(err);
-  }
-});
-
-// Show
-app.get('/flights/:id', async (req, res) => {
-  try {
-    // We are using the id given to us in the URL params to query our database.
-    // const foundFlight = await Flight.findById(req.params.id);
-    const foundFlight = await Flight.findById(req.params.id).populate('destinations');
-    res.render('Show', {
-      //second param must be an object
-      flight: foundFlight,
-      //there will be a variable available inside the jsx file called flight, its value is foundFlight
-    });
-  } catch (err) {
-    res.status(400).send(err);
-  }
 });
 
 // Listen

@@ -1,40 +1,61 @@
-const React = require('react');
-
-const div = {
-  textAlign: 'center',
-  justifyContent: 'center',
-  alignItems: 'center',
-}
+const React = require("react");
 
 const header = {
   color: '#ffffff',
-  backgroundColor: '#800080',
+  background: 'linear-gradient(to bottom, #0000ff, #00ffff)',
+  textAlign: 'center',
+  fontFamily: "Noto Sans, Arial, sans-serif",
+  paddingTop: "1px",
+  paddingBottom: "10px",
+  marginBottom: "30px"
 };
 
-class Show extends React.Component {
-  render() {
-    const flight = this.props.flight
-    return (
-      <div style={div}>
-      <h1> Show Page </h1>
-      <p>Airline: {flight.airline}</p>
-      <p>Flight No.: {flight.flightNo}</p>
-      <p>Departs: {new Date(flight.departs).toLocaleString()}</p>
-      <p>Airport: {flight.airport}</p>
-      <p>Destinations:</p>
-      <ul>
-        {flight.destinations.map((destination, i) => (
-          <li key={i}>
-            Airport: {destination.airport} - Arrival Time: {new Date(destination.arrival).toLocaleString()}
-          </li>
-        ))}
-      </ul>
-      <a href="/flights">
-        <h2 style={{ textAlign: "center" }}>Home</h2>
-      </a>
-    </div>
-    )
-  }
-}
+const flightTable = {
+  fontFamily: "Noto Sans, Arial, sans-serif",
+  fontSize: '20px',
+  justifyContent: 'center',
+  alignItems: 'center',
+  lineHeight: '1.5',
+};
 
-module.exports = Show
+class Index extends React.Component {
+  render() {
+    const { flight } = this.props;
+    return (
+      <div>
+        <header style={header}>
+            <h1>All Flights</h1> 
+        </header>
+        <table style={flightTable}>
+          <thead>
+            <tr>
+              <th>Airline</th>
+              <th>Flight No.</th>
+              <th>Departs</th>
+              <th>Details</th>
+            </tr>
+          </thead>
+          <tbody>
+            {flight.map((flight, i) => {
+              return (
+                <tr key={i}>
+                  <td>{flight.airline}</td>
+                  <td>{flight.flightNo}</td>
+                  <td>{new Date(flight.departs).toLocaleString()}</td>
+                  <td>
+                    <a href={`/flights/${flight._id}`}>Details</a>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+            <a href="/flights/new">
+            <h2 style={{textAlign: "center"}}>Want to add new flight?</h2>
+            </a>
+      </div>
+    );
+  }
+};
+
+module.exports = Index;

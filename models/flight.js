@@ -1,10 +1,9 @@
 const { Schema, model } = require('mongoose');
-const destinationSchema = require('./destination');
 
 const flightSchema = new Schema({
   airline: {
     type: String,
-    enum: ['American', 'Southwest', 'United'],
+    enum: ['American', 'Southwest', 'United', "Delta"],
     required: true
   },
   flightNo: {
@@ -23,11 +22,15 @@ const flightSchema = new Schema({
     enum: ['AUS', 'DAL', 'LAX', 'SAN', 'SEA'],
     default: 'SAN'
   },
-  destinations: {
-    type: [destinationSchema]
-  }  
+  // Referencing the Destination model (Array of destinations)
+  destinations: [
+    {
+      type: Schema.Types.ObjectId, // We are useing Mongo's custom type of ObjectId
+      ref: 'Destination', // ref should be equal to the model's name (the 1st arg when creating a model)
+    },
+  ]  
 });
 
-const Flight = model('Flight', flightSchema)
+const Flight = model('Flight', flightSchema);
 
 module.exports = Flight;

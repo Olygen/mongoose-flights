@@ -1,4 +1,4 @@
-const { Schema } = require('mongoose');
+const { Schema, model } = require('mongoose');
 
 const destinationSchema = new Schema({
   airport: {
@@ -12,4 +12,4 @@ const destinationSchema = new Schema({
   }
 });
 
-module.exports = destinationSchema;
+module.exports = model("Destination", destinationSchema)
