@@ -32,12 +32,14 @@ app.use('/flights', flightsController);
 
 //Catch all route. If the uses try to reach a route that doesn't match the ones above it will catch them and redirect to the Index page
 app.get('/*', (req, res) => {
-  res.send(`
-    <div>
-      404 this page doesn't exist! <br />
-      <a href="/flights">Flights</a> 
-    </div
-  `);
+  // res.send(`
+  //   <div>
+  //     404 this page doesn't exist! <br />
+  //     <a href="/flights">Flights</a> 
+  //   </div
+  // `);
+  res.redirect('/flights');
+
 });
 
 // Listen

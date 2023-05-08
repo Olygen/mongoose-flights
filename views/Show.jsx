@@ -37,7 +37,6 @@ class Show extends React.Component {
       <br/>Departs: {new Date(flight.departs).toLocaleString()}
       <br/>Airport: {flight.airport}
       <br/>Destinations:</p>
-      {/* <ul> */}
       <table style={{ margin: '0 auto' }}>
         <tbody>
           {flight.destinations.map((destination, i) => (
@@ -48,7 +47,6 @@ class Show extends React.Component {
           ))}
         </tbody>
       </table>
-      {/* </ul> */}
       <p style={styles.h}><a href={`/flights/${flight._id}/destinations/new`}>
       Add destinations
       </a></p>
