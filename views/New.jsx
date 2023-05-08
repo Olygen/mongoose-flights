@@ -1,19 +1,10 @@
 const React = require('react');
+const DefaultLayout = require('./layout/Default');
 
 const div = {
     textAlign: 'center',
     fontFamily: "Noto Sans, Arial, sans-serif",
-    fontSize: '20px',
-  }
-  
-  const header = {
-    color: '#ffffff',
-    backgroundColor: '#808080',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '80px',
-    marginBottom: '20px',
+    fontSize: '15px',
   };
   
   const form = {
@@ -21,14 +12,14 @@ const div = {
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-  }
+  };
   
   const input = {
     borderRadius: '4px',
     padding: '8px',
     marginBottom: '8px',
     fontSize: '1rem',
-  }
+  };
   
   const button = {
     backgroundColor: '#808080',
@@ -40,15 +31,16 @@ const div = {
     fontSize: '20px',
     cursor: 'pointer',
     marginTop: '20px',
-  }
+  };
 
   class New extends React.Component {
     render() {
       return (
         <div style={div}>
-          <header style={header}>
+          <DefaultLayout>      
+
             <h1>Input Form for Flights</h1>
-          </header>
+
           <form style={form} action="/flights" method="POST">
             Airline:
             <input style={input} type="text" name="airline" />
@@ -66,6 +58,7 @@ const div = {
             </select>
             <input style={button} type="submit" value="Create Flight" />
           </form>
+          </DefaultLayout>
         </div>
       );
     }

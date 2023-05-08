@@ -85,8 +85,7 @@ router.post('/:id', async (req, res) => {
   router.get('/:id', async (req, res) => {
     try {
       // We are using the id given to us in the URL params to query our database.
-      const foundFlight = await Flight.findById(req.params.id)
-      //.populate('destinations'); // there is not data in destinations yet
+      const foundFlight = await Flight.findById(req.params.id).populate('destinations'); // will be added later
        res.render('Show', {
         //second param must be an object
         flight: foundFlight,

@@ -4,9 +4,9 @@ const DefaultLayout = require('./layout/Default');
 const styles = {
   div: {
     textAlign: 'center',
+    fontFamily: "Noto Sans, Arial, sans-serif",
   },
   h: {
-    fontFamily: "Noto Sans, Arial, sans-serif",
     fontSize: '25px',
     fontWeight: 'bold',
     lineHeight: '1.5',
@@ -15,7 +15,6 @@ const styles = {
     paddingBottom: '20px',
   },
   p: {
-    fontFamily: "Noto Sans, Arial, sans-serif",
     fontSize: '20px',
     lineHeight: '1.5',
     margin: '0 auto',
@@ -38,9 +37,21 @@ class Show extends React.Component {
       <br/>Departs: {new Date(flight.departs).toLocaleString()}
       <br/>Airport: {flight.airport}
       <br/>Destinations:</p>
-      <a href={`/flights/${flight._id}/destinations/new`}>
+      {/* <ul> */}
+      <table style={{ margin: '0 auto' }}>
+        <tbody>
+          {flight.destinations.map((destination, i) => (
+            <tr key={i}>
+              <td>Airport: {destination.airport}</td>
+              <td>Arrival Time: {new Date(destination.arrival).toLocaleString()} ({destination.populate})</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      {/* </ul> */}
+      <p style={styles.h}><a href={`/flights/${flight._id}/destinations/new`}>
       Add destinations
-      </a>
+      </a></p>
       </DefaultLayout>
     </div>
     )
