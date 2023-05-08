@@ -2,18 +2,23 @@ const React = require('react');
 
 const div = {
     textAlign: 'center',
-    justifyContent: 'center',
-    alignItems: 'center',
+    fontFamily: "Noto Sans, Arial, sans-serif",
+    fontSize: '20px',
   }
   
   const header = {
     color: '#ffffff',
     backgroundColor: '#808080',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '80px',
+    marginBottom: '20px',
   };
   
   const form = {
     display: 'flex',
-    flexDirection: 'row',
+    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
   }
@@ -21,19 +26,20 @@ const div = {
   const input = {
     borderRadius: '4px',
     padding: '8px',
-    marginRight: '8px',
+    marginBottom: '8px',
     fontSize: '1rem',
   }
   
   const button = {
-    backgroundColor: '#d3d3d3',
-    color: '#000000',
+    backgroundColor: '#808080',
+    color: '#ffffff',
     borderRadius: '4px',
     padding: '8px 16px',
-    boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.25)',
+    // boxShadow: '2px 2px 4px rgba(0, 255, 255, 0.8)',
     border: 'none',
-    fontSize: '1rem',
+    fontSize: '20px',
     cursor: 'pointer',
+    marginTop: '20px',
   }
 
   class New extends React.Component {

@@ -1,22 +1,5 @@
 const React = require("react");
-
-const header = {
-  display: 'flex',
-  flexWrap: 'wrap',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  padding: '0 25%',
-  color: '#ffffff',
-  background: 'linear-gradient(to bottom, #0000ff, #00ffff)',
-  fontFamily: "Noto Sans, Arial, sans-serif",
-  paddingTop: "1px",
-  paddingBottom: "10px",
-  marginBottom: "30px"
-};
-
-const link = {
-  color: '#ffffff'
-};
+const DefaultLayout = require('./layout/Default');
 
 const flightTable = {
   fontFamily: "Noto Sans, Arial, sans-serif",
@@ -31,15 +14,7 @@ class Index extends React.Component {
     const { flight } = this.props;
     return (
       <div>
-        <header style={header}>
-            {/* <h1>All Flights</h1>  */}
-            <a style={link} href="/flights">
-            <h2>All Flights</h2>
-            </a>
-            <a style={link} href="/flights/new">
-            <h2>Add flight</h2>
-            </a>
-        </header>
+        <DefaultLayout>
         <table style={flightTable}>
           <thead>
             <tr>
@@ -70,9 +45,7 @@ class Index extends React.Component {
             })}
           </tbody>
         </table>
-            {/* <a href="/flights/new">
-            <h2 style={{textAlign: "center"}}>Want to add new flight?</h2>
-            </a> */}
+        </DefaultLayout>
       </div>
     );
   }
